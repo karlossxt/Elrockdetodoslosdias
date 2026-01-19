@@ -1,0 +1,39 @@
+<div class="marquee-container">
+    <div class="marquee-content">
+        <span>● AC/DC confirma gira mundial</span>
+        <span>● 50 años de Ramones</span>
+        <span>● Pearl Jam en México 2026</span>
+        <span>● Metallica estrena documental</span>
+        <span>● Soda Stereo: El Legado</span>
+        <!-- Duplicamos para el loop -->
+        <span>● AC/DC confirma gira mundial</span>
+        <span>● 50 años de Ramones</span>
+        <span>● Pearl Jam en México 2026</span>
+    </div>
+</div>
+
+<style>
+    .marquee-container {
+        background: #cc0000;
+        padding: 15px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        border-y: 4px solid black;
+        position: relative;
+        z-index: 10;
+    }
+    .marquee-content {
+        display: inline-block;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 1.5rem;
+        color: white;
+        text-transform: uppercase;
+        animation: marquee 30s linear infinite;
+    }
+    .marquee-content span { margin-right: 50px; }
+
+    @keyframes marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+</style>

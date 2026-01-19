@@ -1,0 +1,103 @@
+---
+import RockLayout from '../layouts/RockLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Player from '../components/Player.astro';
+---
+
+<RockLayout title="Zënn: La liberación del ser con 'Yo Soy' | El Rock de Todos los Días">
+    <Header />
+
+    <article class="national-post">
+        <!-- CABECERA DE IMPACTO -->
+        <header class="post-header">
+            <div class="container">
+                <span class="sub-label">ESCENA NACIONAL // METAL ALTERNATIVO</span>
+                <h1>ZËNN: EL PODER <br/> <span class="outline">DEL SER INTERIOR</span></h1>
+                <div class="meta">POR: SERGIO LÓPEZ | 16 ENE 2026</div>
+            </div>
+        </header>
+
+        <!-- IMAGEN PRINCIPAL -->
+        <div class="featured-image">
+            <img src="https://images.unsplash.com/photo-1521433504964-2d3997787352?q=80&w=1200" alt="Zenn Metal Alternativo">
+            <div class="overlay-text">ZËNN - YO SOY</div>
+        </div>
+
+        <div class="content-grid">
+            <div class="body-text">
+                <p class="first-p">
+                    <strong>Zënn</strong> regresa con “Yo Soy“, un sencillo que reafirma su identidad dentro del metal alternativo con una ejecución precisa y una producción que muestra su madurez musical. Desde los primeros compases, la banda deja claro que la intensidad y la emoción son sus principales armas.
+                </p>
+
+                <p>
+                    Las guitarras, con una distorsión bien calibrada, crean una atmósfera agresiva pero dinámica, dando paso a un juego vocal que destaca por su versatilidad. <strong>Dakma Vid</strong> brilla con una interpretación que alterna entre guturales imponentes y líneas melódicas bien trabajadas.
+                </p>
+
+                <!-- VIDEO SECCIÓN -->
+                <div class="video-section">
+                    <span class="vid-label">VIDEO OFICIAL // CINEMATOGRAFÍA & PARKOUR</span>
+                    <div class="vid-frame">
+                        <!-- Reemplazar con el ID real del video cuando esté disponible -->
+                        <iframe width="100%" height="450" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <p>
+                    El videoclip destaca por su cinematografía y por secuencias de <strong>parkour</strong> que aportan una sensación de movimiento y libertad, en sintonía con la agresividad y la determinación de la música. Esta propuesta visual evidencia su ambición por ofrecer una experiencia completa.
+                </p>
+
+                <!-- BLOQUE ESPIRITUAL (LA VOZ DE LA BANDA) -->
+                <aside class="spiritual-quote">
+                    <div class="quote-header">EN PALABRAS DE LA BANDA:</div>
+                    <p>
+                        “<strong>YO SOY</strong> es una frase poderosa en la espiritualidad. Se refiere al reconocimiento de la identidad más allá de las etiquetas y roles externos. Liberarse de las limitaciones del ego implica dejar de identificarse con miedos y valores impuestos por la sociedad. Cuando somos niños es más fácil conectar con nuestro ser verdadero”.
+                    </p>
+                </aside>
+
+                <p class="final-text">
+                    Con “Yo Soy”, Zënn demuestra que su evolución es constante y que su identidad está más definida que nunca, consolidándose como una propuesta seria dentro de la escena del metal alternativo en México.
+                </p>
+            </div>
+        </div>
+    </article>
+
+    <Footer />
+    <Player />
+</RockLayout>
+
+<style>
+    .national-post { padding-top: 40px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+    
+    .post-header { text-align: center; margin-bottom: 60px; }
+    .sub-label { font-family: 'Bebas Neue'; color: var(--accent); letter-spacing: 4px; font-size: 1.4rem; }
+    h1 { font-size: 8rem; line-height: 0.8; margin: 20px 0; }
+    .outline { color: transparent; -webkit-text-stroke: 1.5px white; }
+    .meta { font-family: 'Inter'; font-weight: 800; font-size: 0.8rem; color: #444; letter-spacing: 2px; }
+
+    .featured-image { position: relative; width: 100%; height: 70vh; overflow: hidden; }
+    .featured-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.1); }
+    .overlay-text { position: absolute; bottom: 30px; left: 5%; font-family: 'Bebas Neue'; font-size: 4rem; color: var(--accent); text-shadow: 2px 2px 10px black; }
+
+    .content-grid { max-width: 800px; margin: 0 auto; padding: 60px 5%; }
+    .body-text p { font-size: 1.25rem; line-height: 1.8; color: #ccc; margin-bottom: 30px; }
+    .first-p { font-size: 1.5rem; color: white; line-height: 1.6; }
+
+    .video-section { margin: 60px 0; }
+    .vid-label { font-family: 'Bebas Neue'; color: #444; font-size: 1rem; display: block; margin-bottom: 10px; }
+    .vid-frame { border: 1px solid #222; padding: 10px; background: #111; }
+
+    /* Bloque Espiritual */
+    .spiritual-quote { 
+        background: #111; 
+        border-left: 5px solid var(--accent); 
+        padding: 40px; 
+        margin: 60px 0; 
+        position: relative;
+    }
+    .quote-header { font-family: 'Bebas Neue'; font-size: 1.8rem; color: white; margin-bottom: 15px; }
+    .spiritual-quote p { font-style: italic; font-size: 1.2rem; color: #aaa !important; margin-bottom: 0; }
+
+    @media (max-width: 768px) { h1 { font-size: 4rem; } .overlay-text { font-size: 2rem; } }
+</style>

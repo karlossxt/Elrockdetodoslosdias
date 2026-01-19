@@ -1,0 +1,63 @@
+---
+import RockLayout from '../layouts/RockLayout.astro';
+import Header from '../components/Header.astro';
+import NewsCard from '../components/NewsCard.astro';
+import Footer from '../components/Footer.astro';
+import Player from '../components/Player.astro';
+---
+
+<RockLayout title="Escena Nacional | El Rock de Todos los Días">
+    <Header />
+
+    <main style="padding-top: 104px;">
+        <section class="national-hero">
+            <div class="container">
+                <span class="label">TALENTO DE CASA //</span>
+                <h1>ESCENA <span class="outline">NACIONAL</span></h1>
+                <p>El pulso del rock hecho en México: desde las leyendas de Avándaro hasta las bandas que están rompiendo el molde hoy.</p>
+            </div>
+        </section>
+
+        <section class="grid-section">
+            <div class="container">
+                <div class="grid">
+                    <!-- NOTA DE ZËNN -->
+                    <NewsCard 
+                        title="Zënn regresa con 'Yo Soy': Metal alternativo y espiritualidad"
+                        summary="La banda reafirma su identidad con una producción precisa y visuales de parkour que capturan la esencia de la libertad."
+                        date="16 ENE 2026"
+                        category="METAL MX"
+                        image="https://images.unsplash.com/photo-1521433504964-2d3997787352?q=80&w=800"
+                        url="/nota-zenn"
+                    />
+
+                    <!-- REUTILIZAMOS ZOÉ AQUÍ TAMBIÉN -->
+                    <NewsCard 
+                        title="A 15 años de Música de Fondo, Zoé consolida su legado"
+                        summary="Un repaso por la sesión que cambió el panorama del rock en español."
+                        date="15 ENE 2026"
+                        category="CLÁSICOS MX"
+                        image="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800"
+                        url="/nota-zoe"
+                    />
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+    <Player />
+</RockLayout>
+
+<style>
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+    .national-hero { padding: 100px 0; background: #000; border-bottom: 2px solid #111; }
+    .label { color: var(--accent); font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 2px; }
+    h1 { font-size: 10rem; line-height: 0.8; margin: 20px 0; }
+    .outline { color: transparent; -webkit-text-stroke: 1.5px white; }
+    p { font-family: 'Inter'; color: #666; max-width: 600px; font-size: 1.2rem; }
+    .grid-section { padding: 80px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; }
+
+    @media (max-width: 768px) { h1 { font-size: 4rem; } }
+</style>

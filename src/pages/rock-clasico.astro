@@ -1,0 +1,50 @@
+---
+import RockLayout from '../layouts/RockLayout.astro';
+import Header from '../components/Header.astro';
+import NewsCard from '../components/NewsCard.astro';
+import Footer from '../components/Footer.astro';
+import Player from '../components/Player.astro';
+---
+
+<RockLayout title="Rock Clásico | Reseñas y Remembranzas | El Rock de Todos los Días">
+    <Header />
+
+    <main style="padding-top: 104px;">
+        <section class="classic-hero">
+            <div class="container">
+                <span class="label">REMEMBRANZAS //</span>
+                <h1>ROCK <span class="outline">CLÁSICO</span></h1>
+                <p>Analizamos los discos y momentos que definieron la historia del rock mundial.</p>
+            </div>
+        </section>
+
+        <section class="grid-section">
+            <div class="container">
+                <div class="grid">
+                    <!-- NOTA DE KISS REAL -->
+                    <NewsCard 
+                        title="KISS ALIVE!: El disco que cambió el rumbo de los directos"
+                        summary="A 50 años de su lanzamiento, recordamos cómo Kiss salvó su carrera y a un sello discográfico con un doble en vivo."
+                        date="15 ENE 2026"
+                        category="CLÁSICOS"
+                        image="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=800"
+                        url="/nota-kiss"
+                    />
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+    <Player />
+</RockLayout>
+
+<style>
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+    .classic-hero { padding: 100px 0; background: #000; border-bottom: 2px solid #111; }
+    .label { color: var(--accent); font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 2px; }
+    h1 { font-size: 8rem; line-height: 0.8; margin: 20px 0; }
+    .outline { color: transparent; -webkit-text-stroke: 1.5px white; }
+    .grid-section { padding: 80px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; }
+</style>

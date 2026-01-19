@@ -1,0 +1,225 @@
+---
+// Header.astro - Versión Corregida (Sin encimarse)
+---
+<header class="header-wrapper">
+    <!-- 1. BARRA SUPERIOR (TOP BAR) -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="live-info">
+                <span class="pulse"></span> 
+                <span class="live-text">RADIO EN VIVO: <span class="red-text">EL ROCK DE TODOS LOS DÍAS</span></span>
+            </div>
+            <div class="top-socials">
+                <a href="https://wa.me/525519204557" target="_blank"><i class="fa-brands fa-whatsapp"></i> 55 1920 4557</a>
+                <a href="https://www.twitch.tv/elrockdetodoslosdias" target="_blank"><i class="fa-brands fa-twitch"></i> TWITCH</a>
+                <a href="https://discord.gg/Ey7sdqwDaW" target="_blank"><i class="fa-brands fa-discord"></i> DISCORD</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. BARRA DE NAVEGACIÓN PRINCIPAL -->
+    <div class="main-nav-bar">
+        <div class="nav-container">
+            <!-- LOGO -->
+            <div class="logo-side">
+                <a href="/">
+                    <img src="/logo-rock.png" alt="Logo" class="brand-logo" />
+                </a>
+            </div>
+
+            <!-- MENÚ -->
+            <nav class="nav-links">
+                <a href="/">PORTADA</a>
+                <a href="/agenda">AGENDA</a>
+                
+               <!-- DROPDOWN ROCK (Corregido) -->
+<div class="dropdown">
+    <!-- Ahora es un enlace real 'a' en lugar de 'button' -->
+    <a href="/rock" class="dropbtn">
+        ROCK <i class="fa-solid fa-chevron-down"></i>
+    </a>
+    <div class="dropdown-content">
+        <a href="/rock-clasico">ROCK CLÁSICO</a>
+        <a href="/rock-latino">ROCK LATINO</a>
+        <a href="/indie">INDIE / ALT</a>
+        <a href="/punk">PUNK</a>
+        
+    </div>
+</div>
+
+<!-- ... después el de OTROS MUNDOS ... -->
+
+<div class="dropdown">
+    <!-- Si tienes una página general de 'otros-mundos' ponla aquí, si no, déjalo con # -->
+    <a href="/cine" class="dropbtn">
+        OTROS MUNDOS <i class="fa-solid fa-chevron-down"></i>
+    </a>
+    <div class="dropdown-content">
+        <a href="/cine">PANTALLAS</a>
+        <a href="/comics">COMICS</a>
+        <a href="/arte">ARTE</a>
+    </div>
+</div>
+
+                
+
+                <a href="/bytemos">BYTEMOS</a>
+                <a href="/entrevistas">ENTREVISTAS</a>
+            </nav>
+            <!-- Busca la sección del menú y añade esto -->
+<a href="/toy-rockeando" class="sh-link" style="color: var(--accent) !important;">TOY ROCKEANDO</a>
+
+            <!-- BUSCADOR -->
+            <div class="search-side">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="BUSCAR..." />
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+    /* CONTENEDOR PADRE FIJO */
+    .header-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2000;
+        background-color: #000;
+        display: flex;
+        flex-direction: column; /* Apila Top Bar sobre el Nav */
+    }
+
+    /* 1. ESTILOS TOP BAR */
+    .top-bar {
+        background-color: #080808;
+        border-bottom: 1px solid #1a1a1a;
+        padding: 8px 0;
+    }
+    .top-bar-content {
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 0 4%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .live-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: #fff;
+    }
+    .red-text { color: var(--accent); }
+    .pulse {
+        width: 8px;
+        height: 8px;
+        background-color: var(--accent);
+        border-radius: 50%;
+        animation: blink 1s infinite;
+    }
+    .top-socials { display: flex; gap: 20px; }
+    .top-socials a {
+        color: #666;
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: 0.3s;
+    }
+    .top-socials a:hover { color: #fff; }
+
+    /* 2. ESTILOS NAVEGACIÓN PRINCIPAL */
+    .main-nav-bar {
+        background-color: rgba(0, 0, 0, 0.95);
+        border-bottom: 1px solid #1a1a1a;
+        backdrop-filter: blur(10px);
+    }
+    .nav-container {
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 10px 4%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .brand-logo {
+        height: 60px; /* Reducido un poco para que no empuje todo */
+        width: auto;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 20px; /* Espacio reducido para que quepa todo */
+        align-items: center;
+    }
+
+    .nav-links a, .dropbtn {
+        color: white;
+        text-decoration: none;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.25rem; /* Ajustado para que no se encime */
+        letter-spacing: 1px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .nav-links a:hover, .dropbtn:hover { color: var(--accent); }
+
+    /* DROPDOWNS */
+    .dropdown { position: relative; }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #080808;
+        min-width: 180px;
+        border: 1px solid #222;
+        top: 100%;
+        left: 0;
+        padding: 10px 0;
+    }
+    .dropdown-content a {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #111;
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+
+    /* BUSCADOR */
+    .search-box {
+        background: #111;
+        border-radius: 20px;
+        padding: 6px 15px;
+        display: flex;
+        align-items: center;
+        border: 1px solid #222;
+    }
+    .search-box input {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 0.7rem;
+        outline: none;
+        width: 100px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* RESPONSIVO */
+    @media (max-width: 1300px) {
+        .nav-links { gap: 12px; }
+        .nav-links a, .dropbtn { font-size: 1.1rem; }
+    }
+</style>

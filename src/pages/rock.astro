@@ -1,0 +1,30 @@
+---
+import CategoryLayout from '../layouts/CategoryLayout.astro';
+import NewsCard from '../components/NewsCard.astro';
+---
+
+<CategoryLayout 
+    title="ROCK"
+    subtitle="Crónicas, leyendas y el pulso de la distorsión global."
+    image="https://images.unsplash.com/photo-1459749411177-042180ce673c"
+    color="#ff0000"
+>
+    <!-- Aquí metes las tarjetas que pertenecen a esta sección -->
+    <NewsCard 
+        title="A 15 años de Música de Fondo, Zoé consolida su legado"
+        summary="Un repaso por la sesión que cambió el rock mexicano."
+        date="16 ENE 2026"
+        category="ESPECIAL"
+        image="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800"
+        url="/nota-zoe"
+    />
+
+    <NewsCard 
+        title="KISS ALIVE!: El disco que cambió las reglas"
+        summary="Cómo un álbum en vivo rescató a una banda de la quiebra."
+        date="15 ENE 2026"
+        category="CLÁSICOS"
+        image="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=800"
+        url="/nota-kiss"
+    />
+</CategoryLayout>

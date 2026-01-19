@@ -1,0 +1,48 @@
+---
+const RELEASES = [
+  { artist: 'The Cure', album: 'Songs of a Lost World', type: 'Álbum', img: 'sogs.jpg', url: 'https://open.spotify.com/intl-es/album/0jYmAPQezr1aG75KerJCdG?si=APmcgfsIQUO1RehRkYbGyA' },
+  { artist: 'Linkin Park', album: 'From Zero', type: 'Álbum', img: 'https://i.scdn.co/image/ab67616d0000b2730687799014197025828a2a07', url: 'https://open.spotify.com/album/4vI0pLp9N85255462524' },
+  { artist: 'Fontaines D.C.', album: 'Romance', type: 'Álbum', img: 'https://i.scdn.co/image/ab67616d0000b273e8e2e987799014197025828a', url: '#' },
+  { artist: 'Caifanes', album: 'Inés', type: 'Sencillo', img: 'https://i.scdn.co/image/ab67616d0000b27341577742194197025828a2a0', url: '#' },
+  { artist: 'Ghost', album: 'Rite Here Rite Now', type: 'Banda Sonora', img: 'https://i.scdn.co/image/ab67616d0000b273934384197025828a2a07', url: '#' }
+];
+---
+<section class="spotify-section">
+    <div class="header-spotify">
+        <div class="live-tag"><span class="pulse"></span> TOP 5 SEMANAL</div>
+        <h2>ESTRENOS QUE <span class="red-text">QUEMAN</span></h2>
+    </div>
+
+    <div class="releases-grid">
+        {RELEASES.map(item => (
+            <a href={item.url} target="_blank" class="release-card">
+                <div class="img-box">
+                    <img src={item.img} alt={item.album} />
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <h3>{item.album}</h3>
+                <p>{item.artist}</p>
+            </a>
+        ))}
+    </div>
+</section>
+
+<style>
+    .spotify-section { padding: 60px 5%; }
+    h2 { font-size: 5rem; margin-bottom: 40px; line-height: 0.9; }
+    .red-text { color: var(--accent); }
+    .pulse { width: 8px; height: 8px; background: #1DB954; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
+    .live-tag { color: #1DB954; font-weight: 800; font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; }
+    .releases-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+    .release-card { text-decoration: none; }
+    .img-box { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 4px; margin-bottom: 15px; background: #111; }
+    .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(100%); }
+    .release-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+    .play-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
+    .release-card:hover .play-overlay { opacity: 1; }
+    .play-overlay i { background: #1DB954; color: black; padding: 15px; border-radius: 50%; }
+    h3 { font-size: 1.5rem; color: white; margin: 0; line-height: 1; }
+    p { font-size: 0.9rem; color: #888; margin-top: 5px; font-weight: 600; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    @media (max-width: 900px) { .releases-grid { grid-template-columns: repeat(2, 1fr); } h2 { font-size: 3rem; } }
+</style>

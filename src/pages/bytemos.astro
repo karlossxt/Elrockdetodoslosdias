@@ -1,0 +1,193 @@
+---
+import RockLayout from '../layouts/RockLayout.astro';
+import Header from '../components/Header.astro';
+import NewsCard from '../components/NewsCard.astro';
+import Footer from '../components/Footer.astro';
+import Player from '../components/Player.astro';
+---
+
+<RockLayout title="Bytemos | Videojuegos y Tecnología | El Rock de Todos los Días">
+    <Header />
+
+    <main style="padding-top: 104px;">
+        <!-- CABECERA BYTEMOS CON EFECTO GLITCH -->
+        <section class="bytemos-header">
+            <div class="container">
+                <span class="system-status">>> SISTEMA OPERATIVO: ROCK_HUB_V2.0</span>
+                <h1 class="glitch-title" data-text="BYTEMOS">BYTEMOS</h1>
+                <p class="tagline">La intersección definitiva entre los bits y los riffs.</p>
+            </div>
+            <!-- Decoración estilo interfaz -->
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+        </section>
+
+        <!-- FILTROS DIGITALES -->
+        <nav class="bytemos-nav">
+            <div class="container">
+                <a href="#" class="active">/ TODO</a>
+                <a href="#">/ RESEÑAS</a>
+                <a href="#">/ HARDWARE</a>
+                <a href="#">/ RETRO_GAMING</a>
+            </div>
+        </nav>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <section class="content-section">
+            <div class="container">
+                <div class="grid">
+                    <!-- LA NOTA REAL DE BYTEMOS -->
+                    <NewsCard 
+                        title="El Rock en la Era Digital: La Revolución en los Videojuegos"
+                        summary="La industria de los videojuegos y el rock consolidan una alianza inmersiva que llega a los Grammy 2026."
+                        date="16 ENE 2026"
+                        category="TECH"
+                        image="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800"
+                        url="/nota-bytemos"
+                    />
+
+                    <!-- RELLENO PARA DISEÑO -->
+                    <NewsCard 
+                        title="Reseña: Doom The Dark Ages y su soundtrack industrial"
+                        summary="Exploramos cómo la nueva entrega de la saga eleva el estándar del metal en el gaming."
+                        date="14 ENE 2026"
+                        category="RESEÑA"
+                        image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800"
+                        url="#"
+                    />
+                    
+                    <NewsCard 
+                        title="GTA VI: Lo que esperamos de su estación de Rock"
+                        summary="Rockstar Games y su histórica curaduría musical vuelven al foco con el lanzamiento más esperado."
+                        date="10 ENE 2026"
+                        category="NOTICIAS"
+                        image="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800"
+                        url="#"
+                    />
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+    <Player />
+</RockLayout>
+
+<style>
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+
+    /* Estilo Cabecera Gamer */
+    .bytemos-header {
+        background: #000;
+        padding: 100px 0;
+        position: relative;
+        border-bottom: 2px solid #111;
+        overflow: hidden;
+    }
+
+    .system-status {
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        font-size: 0.8rem;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+    }
+
+    .glitch-title {
+        font-size: 10rem;
+        line-height: 0.8;
+        position: relative;
+        color: white;
+        margin: 0;
+    }
+
+    /* Animación de Glitch para el título */
+    .glitch-title::before, .glitch-title::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .glitch-title::before {
+        left: 2px;
+        text-shadow: -2px 0 #ff0000;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+
+    .glitch-title::after {
+        left: -2px;
+        text-shadow: -2px 0 #fff;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim2 1s infinite linear alternate-reverse;
+    }
+
+    .tagline {
+        font-family: 'Inter';
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: #444;
+        margin-top: 20px;
+        text-transform: uppercase;
+    }
+
+    /* Navegación de sección */
+    .bytemos-nav {
+        background: #050505;
+        padding: 15px 0;
+        border-bottom: 1px solid #111;
+        position: sticky;
+        top: 104px;
+        z-index: 90;
+    }
+    .bytemos-nav .container { display: flex; gap: 40px; }
+    .bytemos-nav a {
+        font-family: 'Bebas Neue';
+        text-decoration: none;
+        color: #333;
+        font-size: 1.5rem;
+        transition: 0.3s;
+    }
+    .bytemos-nav a:hover, .bytemos-nav a.active { color: var(--accent); }
+
+    /* Decoraciones de esquinas */
+    .corner-top-right {
+        position: absolute; top: 20px; right: 20px;
+        width: 100px; height: 100px;
+        border-top: 4px solid var(--accent); border-right: 4px solid var(--accent);
+    }
+    .corner-bottom-left {
+        position: absolute; bottom: 20px; left: 20px;
+        width: 100px; height: 100px;
+        border-bottom: 4px solid #333; border-left: 4px solid #333;
+    }
+
+    /* El Grid */
+    .content-section { padding: 80px 0; }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    @keyframes glitch-anim {
+        0% { clip: rect(31px, 9999px, 94px, 0); }
+        20% { clip: rect(62px, 9999px, 42px, 0); }
+        /* ... más pasos ... */
+        100% { clip: rect(67px, 9999px, 51px, 0); }
+    }
+    @keyframes glitch-anim2 {
+        0% { clip: rect(10px, 9999px, 85px, 0); }
+        100% { clip: rect(80px, 9999px, 20px, 0); }
+    }
+
+    @media (max-width: 768px) {
+        .glitch-title { font-size: 5rem; }
+        .bytemos-nav .container { gap: 20px; }
+    }
+</style>

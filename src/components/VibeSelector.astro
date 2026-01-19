@@ -1,0 +1,32 @@
+<section class="vibe-box">
+    <div class="header-vibe">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <h2>SELECTOR DE VIBRAS AI</h2>
+    </div>
+    <p>¿No sabes qué escuchar? Elige tu estado de ánimo:</p>
+    <div class="vibe-grid">
+        <button class="vibe-btn">⚡ ENERGÉTICO</button>
+        <button class="vibe-btn">🌑 MELANCÓLICO</button>
+        <button class="vibe-btn">🔥 REBELDE</button>
+        <button class="vibe-btn">🌊 RELAJADO</button>
+    </div>
+</section>
+
+<style>
+    .vibe-box {
+        background: var(--card-bg);
+        border: 1px solid #222;
+        padding: 40px;
+        border-radius: 20px;
+        margin: 50px auto;
+        max-width: 800px;
+        text-align: center;
+    }
+    .header-vibe { display: flex; justify-content: center; align-items: center; gap: 15px; color: var(--accent); }
+    .vibe-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px; }
+    .vibe-btn {
+        background: #1a1a1a; border: 1px solid #333; color: white; padding: 15px;
+        border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s;
+    }
+    .vibe-btn:hover { background: var(--accent); border-color: var(--accent); transform: scale(1.05); }
+</style>

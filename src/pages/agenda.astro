@@ -1,0 +1,50 @@
+---
+import RockLayout from '../layouts/RockLayout.astro';
+import Header from '../components/Header.astro';
+import NewsCard from '../components/NewsCard.astro';
+import Footer from '../components/Footer.astro';
+import Player from '../components/Player.astro';
+---
+
+<RockLayout title="Agenda de Conciertos | El Rock de Todos los Días">
+    <Header />
+
+    <main style="padding-top: 104px;">
+        <section class="agenda-hero">
+            <div class="container">
+                <span class="label">CARTELERA // MÉXICO</span>
+                <h1>LA AGENDA <span class="outline">DEL RUIDO</span></h1>
+                <p>No te pierdas ningún riff. Los conciertos más importantes del rock y metal en México.</p>
+            </div>
+        </section>
+
+        <section class="grid-section">
+            <div class="container">
+                <div class="grid">
+                    <!-- EVENTO REAL -->
+                    <NewsCard 
+                        title="Alan Parsons Live Project: Tour México 2025"
+                        summary="El maestro sonoro del rock progresivo llega a Monterrey, Puebla y CDMX para celebrar 50 años de legado."
+                        date="ABRIL 2025"
+                        category="CONCIERTO"
+                        image="https://images.unsplash.com/photo-1514525253361-bee8718a74a2?q=80&w=800"
+                        url="/nota-alan-parsons"
+                    />
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+    <Player />
+</RockLayout>
+
+<style>
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+    .agenda-hero { padding: 80px 0; background: #000; border-bottom: 2px solid #111; }
+    .label { color: var(--accent); font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 2px; }
+    h1 { font-size: 8rem; line-height: 0.8; margin: 20px 0; }
+    .outline { color: transparent; -webkit-text-stroke: 1.5px white; }
+    .grid-section { padding: 80px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; }
+</style>

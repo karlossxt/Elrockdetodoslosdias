@@ -1,0 +1,149 @@
+---
+// src/components/Colaboradores.astro
+
+// AQUÍ PONDREMOS LOS NOMBRES QUE ME PASES
+const ALIADOS = [
+  { name: 'TWISTED PROG FEST', url: '#', logo: '/logos/placeholder.png' },
+  { name: 'MADAME BLEU', url: '#', logo: '/logos/placeholder.png' },
+  { name: 'Were the point ', url: '#', logo: '/logos/placeholder.png' },
+  { name: 'EL LLAMADO DE LA BESTIA', url: '#', logo: '/logos/placeholder.png' },
+  { name: 'FOTOROCK21', url: '#', logo: '/logos/placeholder.png' },
+   { name: 'METALOPOLIS', url: '#', logo: '/logos/placeholder.png' },
+];
+---
+
+<section class="partners-marquee">
+    <div class="marquee-title">
+        <span class="line"></span>
+        <h2>ALIADOS <span class="outline">DEL RUIDO</span></h2>
+        <span class="line"></span>
+    </div>
+
+    <div class="slider">
+        <div class="slide-track">
+            <!-- Primera tanda de aliados -->
+            {ALIADOS.map((aliado) => (
+                <div class="slide">
+                    <a href={aliado.url} target="_blank" title={aliado.name}>
+                        {aliado.logo.includes('placeholder') ? 
+                            <span class="aliado-name">{aliado.name}</span> : 
+                            <img src={aliado.logo} alt={aliado.name} />
+                        }
+                    </a>
+                </div>
+            ))}
+            <!-- Segunda tanda (para el efecto infinito) -->
+            {ALIADOS.map((aliado) => (
+                <div class="slide">
+                    <a href={aliado.url} target="_blank">
+                        {aliado.logo.includes('placeholder') ? 
+                            <span class="aliado-name">{aliado.name}</span> : 
+                            <img src={aliado.logo} alt={aliado.name} />
+                        }
+                    </a>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .partners-marquee {
+        background: #000;
+        padding: 60px 0;
+        border-top: 1px solid #111;
+        overflow: hidden;
+    }
+
+    .marquee-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 50px;
+    }
+
+    .marquee-title h2 {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 2.5rem;
+        margin: 0;
+        letter-spacing: 2px;
+        white-space: nowrap;
+    }
+
+    .outline {
+        color: transparent;
+        -webkit-text-stroke: 1px white;
+    }
+
+    .line {
+        height: 1px;
+        background: #222;
+        width: 100px;
+    }
+
+    /* --- ESTILO DEL SLIDER --- */
+    .slider {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    .slide-track {
+        display: flex;
+        width: calc(250px * 10); /* Ajustar según cantidad de aliados */
+        animation: scroll 30s linear infinite;
+        align-items: center;
+    }
+
+    .slide-track:hover {
+        animation-play-state: paused;
+    }
+
+    .slide {
+        width: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px;
+    }
+
+    /* Estilo por si no hay imagen y ponemos solo texto */
+    .aliado-name {
+        font-family: 'Bebas Neue';
+        font-size: 1.8rem;
+        color: #333;
+        transition: 0.3s;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .aliado-name:hover {
+        color: var(--accent);
+    }
+
+    /* Estilo para los logos reales */
+    .slide img {
+        width: 100%;
+        max-width: 150px;
+        filter: grayscale(100%);
+        opacity: 0.4;
+        transition: 0.4s;
+    }
+
+    .slide img:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-250px * 5)); }
+    }
+
+    @media (max-width: 768px) {
+        .marquee-title h2 { font-size: 1.8rem; }
+        .line { width: 40px; }
+    }
+</style>

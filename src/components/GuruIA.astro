@@ -1,0 +1,48 @@
+<section class="guru-section">
+    <div class="container">
+        <div class="guru-grid">
+            <div class="guru-text">
+                <span class="sub">Tecnología & Música</span>
+                <h2>CONOCE AL <span class="highlight">GURÚ DEL ROCK</span> CON IA</h2>
+                <p>¿Necesitas una lista de bandas de rock psicodélico mexicano? Nuestro Gurú del Rock está listo para tus preguntas las 24 horas.</p>
+                <div class="users-counter">
+                    <div class="avatars">
+                        <img src="https://picsum.photos/seed/1/100" />
+                        <img src="https://picsum.photos/seed/2/100" />
+                        <img src="https://picsum.photos/seed/3/100" />
+                    </div>
+                    <div class="stats">
+                        <p class="count">+10k Rockeros</p>
+                        <p class="desc">Ya consultan al Gurú</p>
+                    </div>
+                </div>
+            </div>
+            <div class="guru-visual">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=1000" alt="Rock AI" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .guru-section { background: #050505; padding: 100px 5%; border-y: 1px solid #111; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .guru-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    
+    .sub { color: #cc0000; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; font-size: 10px; display: block; margin-bottom: 20px; }
+    h2 { font-size: 3.5rem; line-height: 1; margin-bottom: 30px; }
+    .highlight { color: #cc0000; }
+    p { color: #888; font-size: 1.1rem; line-height: 1.6; }
+
+    .users-counter { display: flex; gap: 15px; margin-top: 40px; align-items: center; }
+    .avatars img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #000; margin-right: -15px; }
+    .count { font-weight: bold; font-size: 14px; margin: 0; }
+    .desc { color: #555; font-size: 12px; margin: 0; }
+
+    .guru-visual img { width: 100%; filter: grayscale(100%); transition: 1s; border-radius: 20px; }
+    .guru-visual:hover img { filter: grayscale(0%); transform: scale(1.02); }
+
+    @media (max-width: 900px) { .guru-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,127 @@
+---
+import RockLayout from './RockLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Player from '../components/Player.astro';
+
+// Definimos lo que recibe el componente
+interface Props {
+  title: string;
+  category: string;
+  readTime: string;
+  date: string;
+  author: string;
+  image: string;
+  summary: string;
+  tempo: string;
+  mood: string;
+  sello: string;
+  videoId?: string;
+  tags?: string[];
+}
+
+const { 
+    title, 
+    category, 
+    readTime, 
+    date, 
+    author, 
+    image, 
+    summary, 
+    tempo, 
+    mood, 
+    sello, 
+    videoId, 
+    tags = [] 
+} = Astro.props;
+---
+
+<RockLayout title={`${title} | El Rock de Todos los Días`}>
+    <Header />
+
+    <article class="modern-post">
+        <!-- HERO PRINCIPAL -->
+        <header class="post-hero" style={`background-image: linear-gradient(rgba(0,0,0,0.4), #000), url(${image});`}>
+            <div class="hero-content">
+                <span class="category-pill">{category}</span>
+                <h1>{title}</h1>
+                <p class="read-time">{readTime} // {date} // POR {author}</p>
+            </div>
+        </header>
+
+        <div class="post-container">
+            <main class="main-content">
+                <div class="lead-text">
+                    <p>{summary}</p>
+                </div>
+
+                <div class="article-body">
+                    <slot /> <!-- Aquí entra el texto de la nota -->
+                    
+                    <!-- SECCIÓN DE TAGS -->
+                    <div class="post-tags">
+                        {tags.map((tag: string) => (
+                            <a href={`/genero/${tag.toLowerCase()}`}>#{tag.toUpperCase()}</a>
+                        ))}
+                    </div>
+                </div>
+
+                {videoId && (
+                    <div class="video-wrapper">
+                        <iframe 
+                            width="100%" 
+                            height="500" 
+                            src={`https://www.youtube.com/embed/${videoId}`} 
+                            frameborder="0" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                )}
+            </main>
+
+            <aside class="sidebar">
+                <div class="pulse-card">
+                    <h3>DETALLES DEL PULSO</h3>
+                    <div class="pulse-info">
+                        <p>TEMPO: <strong>{tempo}</strong></p>
+                        <p>MOOD: <strong>{mood}</strong></p>
+                        <p>SELLO: <strong>{sello}</strong></p>
+                    </div>
+
+                    <div class="rating-circle">
+                        <svg viewBox="0 0 36 36" class="circular-chart">
+                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle" stroke-dasharray="92, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <text x="18" y="20.35" class="percentage">9.2</text>
+                        </svg>
+                        <span>PULSO EDITORIAL</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </article>
+
+    <Footer />
+    <Player />
+</RockLayout>
+
+<style>
+    .modern-post { background: #000; color: white; }
+    .post-hero { height: 80vh; background-size: cover; background-position: center; display: flex; align-items: flex-end; padding-bottom: 60px; }
+    .hero-content { max-width: 1400px; margin: 0 auto; width: 90%; }
+    h1 { font-family: 'Bebas Neue'; font-size: 7rem; line-height: 0.8; margin: 20px 0; letter-spacing: -2px; }
+    .category-pill { background: var(--accent); padding: 5px 15px; font-family: 'Bebas Neue'; font-size: 1.2rem; }
+    .read-time { font-family: 'Inter'; font-weight: 800; font-size: 0.8rem; color: #888; }
+
+    .post-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 300px; gap: 60px; padding: 60px 5%; }
+    .lead-text { font-size: 1.5rem; font-style: italic; color: #888; margin-bottom: 40px; border-left: 4px solid var(--accent); padding-left: 20px; }
+    .article-body :global(p) { font-family: 'Inter'; font-size: 1.25rem; line-height: 1.8; color: #ccc; margin-bottom: 25px; }
+
+    .post-tags { margin-top: 50px; display: flex; flex-wrap: wrap; gap: 15px; border-top: 1px solid #111; padding-top: 30px; }
+    .post-tags a { font-family: 'Bebas Neue'; font-size: 1.2rem; color: #444; text-decoration: none; transition: 0.3s; }
+    .post-tags a:hover { color: var(--accent); transform: translateY(-2px); }
+
+    .pulse-card { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 30px; position: sticky; top: 120px; }
+    .pulse-card h3 { font-family: 'Bebas Neue'; color: var(--accent); font-size: 1.2rem; margin-bottom: 20px; }
+    .pulse-info p { font-family: 'Inter'; font-size: 0.8rem; color: #555; margin-bottom: 10px; border-bottom: 1px solid #111; padding-bottom: 10px; font-weight: 800; }
+    .pulse-info s
