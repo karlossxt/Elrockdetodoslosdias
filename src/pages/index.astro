@@ -1,10 +1,10 @@
 ---
+// 1. IMPORTACIONES
 import RockLayout from '../layouts/RockLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
 import NewsCard from '../components/NewsCard.astro';
-import SpotifyReleases from '../components/SpotifyReleases.astro';
+import SpotifyReleases from '../components/SpotifyReleases.astro'; // Este es el que ahora se verá como "Lo mejor de la semana"
 import Footer from '../components/Footer.astro';
 
 const aliados = [
@@ -21,31 +21,27 @@ const aliados = [
     <Header />
     
     <main class="main-wrapper">
+        <!-- HERO PRINCIPAL (Este sí puede ocupar más ancho para impactar) -->
+        <Hero 
+            tag="REMEMBRANZAS // 50 AÑOS"
+            title="KISS ALIVE!: a 50 años"
+            subtitle="El álbum que cambió el rumbo de los discos en directo y salvó a una banda de la quiebra en 1975."
+            image="/ALIVE-ALBUM-COVER-ALTERNATE.jpg"
+            url="/nota-kiss"
+        />
+
         
-     <Hero 
-  tag="REMEMBRANZAS // 50 AÑOS"
-  title="KISS ALIVE!: a 50 años"
-  subtitle="El álbum que cambió el rumbo de los discos en directo y salvó a una banda de la quiebra en 1975."
-  image="/ALIVE-ALBUM-COVER-ALTERNATE.jpg"
-  url="/nota-kiss"
-/>
-
-
-        <Marquee />
-
-        <section class="section-padding">
-            <div class="container">
                 <SpotifyReleases />
             </div>
         </section>
 
         <!-- SECCIÓN NOTICIAS -->
         <section class="section-padding news-home">
-            <div class="container">
+            <div class="container-compact">
                 <div class="section-header">
                     <div class="header-left">
                         <div class="red-bar"></div>
-                        <h2 class="section-title">ÚLTIMAS <span class="red">HISTORIAS</span></h2>
+                        <h2 class="section-title">ÚLTIMAS <span class="red-italic">HISTORIAS</span></h2>
                     </div>
                     <a href="/rock" class="view-more">VER TODO EL RUIDO</a>
                 </div>
@@ -78,16 +74,13 @@ const aliados = [
                         image="/zoe-mtv-unplugged.jpg"
                         url="/nota-zoe"
                     />
-                    <div class="placeholder-card"><span>PRÓXIMAMENTE</span></div>
+                    <!-- Quitamos el placeholder o lo dejamos, pero 3 notas alinean mejor en ancho compacto -->
                 </div>
 
-                <!-- BOTÓN SPOTIFY (Cambia el href por tu link real de Spotify) -->
                 <div class="cta-container">
-                <a href="/playlists" class="btn-spotify">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.59 17.31c-.218.359-.683.475-1.039.256-2.871-1.755-6.485-2.152-10.741-1.177-.411.095-.82-.162-.913-.573-.095-.411.161-.821.573-.914 4.656-1.064 8.653-.615 11.862 1.345.358.218.474.685.258 1.042zm1.496-3.26c-.275.446-.853.586-1.295.313-3.287-2.021-8.3-2.614-12.189-1.433-.504.153-1.035-.133-1.189-.637-.154-.503.133-1.035.637-1.189 4.453-1.353 9.98-.696 13.731 1.611.442.273.582.851.305 1.295zm.128-3.419c-3.944-2.343-10.457-2.559-14.234-1.412-.605.184-1.246-.164-1.428-.771-.184-.604.164-1.246.771-1.428 4.34-1.319 11.531-1.066 16.059 1.621.543.322.721 1.025.399 1.568-.323.543-1.025.721-1.567.422z"/>
-                        </svg>
-                        ESCUCHAR PLAYLISTS EN SPOTIFY
+                    <a href="/playlists" class="btn-spotify">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.59 17.31c-.218.359-.683.475-1.039.256-2.871-1.755-6.485-2.152-10.741-1.177-.411.095-.82-.162-.913-.573-.095-.411.161-.821.573-.914 4.656-1.064 8.653-.615 11.862 1.345.358.218.474.685.258 1.042zm1.496-3.26c-.275.446-.853.586-1.295.313-3.287-2.021-8.3-2.614-12.189-1.433-.504.153-1.035-.133-1.189-.637-.154-.503.133-1.035.637-1.189 4.453-1.353 9.98-.696 13.731 1.611.442.273.582.851.305 1.295zm.128-3.419c-3.944-2.343-10.457-2.559-14.234-1.412-.605.184-1.246-.164-1.428-.771-.184-.604.164-1.246.771-1.428 4.34-1.319 11.531-1.066 16.059 1.621.543.322.721 1.025.399 1.568-.323.543-1.025.721-1.567.422z"/></svg>
+                        ESCUCHAR TODAS LAS PLAYLISTS
                     </a>
                 </div>
             </div>
@@ -95,12 +88,10 @@ const aliados = [
 
         <!-- SECCIÓN ALIADOS -->
         <section class="aliados-section">
-            <div class="container">
+            <div class="container-compact">
                 <div class="aliados-header">
-                    <div class="badge">
-                        <span class="shield-icon">🛡️</span> ALIADOS DEL RUIDO
-                    </div>
-                    <h2 class="aliados-title">AMIGOS QUE <span class="red">VIBRAN</span> CON NOSOTROS</h2>
+                    <div class="badge">🛡️ ALIADOS DEL RUIDO</div>
+                    <h2 class="aliados-title">AMIGOS QUE <span class="red-italic">VIBRAN</span> CON NOSOTROS</h2>
                 </div>
 
                 <div class="aliados-grid">
@@ -111,60 +102,69 @@ const aliados = [
                         </div>
                     ))}
                 </div>
-
-                <p class="aliados-footer">
-                    ¿Quieres colaborar con El Rock de Todos los Días? <a href="/contacto">Contáctanos aquí.</a>
-                </p>
             </div>
         </section>
-
     </main>
 
     <Footer />
-
 </RockLayout>
 
 <style>
-    /* El resto del CSS se mantiene igual, ya que está optimizado */
-    html { scroll-behavior: smooth; }
-    .main-wrapper { padding-top: 100px; background: #000; }
-    .section-padding { padding: 80px 0; }
-    .container { max-width: 1250px; margin: 0 auto; padding: 0 5%; }
+    body { background-color: #000; margin: 0; }
+    .main-wrapper { background: #000; padding-top: 165px; } 
 
-    /* NEWS SECTION */
-    .news-home { background: #000; border-top: 1px solid #111; }
-    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+    /* CONTENEDOR COMPACTO (La clave del cambio) */
+    .container-compact { 
+        max-width: 1100px; /* Reducido de 1400 a 1100 para look de revista */
+        margin: 0 auto; 
+        padding: 0 20px; 
+    }
+
+    .section-padding { padding: 60px 0; }
+
+    /* LO MEJOR DE LA SEMANA (Header minimalista) */
+    .header-minimal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    .red-dot { width: 8px; height: 8px; background: #ff0000; border-radius: 50%; margin-bottom: 15px; }
+    .title-label { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: #fff; letter-spacing: 2px; }
+
+    /* NOTICIAS */
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 1px solid #111; padding-bottom: 20px; }
     .header-left { display: flex; align-items: center; gap: 15px; }
-    .red-bar { width: 4px; height: 35px; background: #ff0000; }
-    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; margin: 0; line-height: 1; color: white; letter-spacing: 1px; }
-    .red { color: #ff0000; }
-    .view-more { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 800; color: #444; text-decoration: none; letter-spacing: 2px; }
+    .red-bar { width: 4px; height: 40px; background: #ff0000; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; color: white; margin: 0; }
+    .red-italic { color: #ff0000; font-style: italic; }
+    .view-more { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 800; color: #444; text-decoration: none; letter-spacing: 2px; padding-bottom: 5px; }
 
-    /* GRID & CARDS */
-    .grid-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; align-items: start; }
-    .grid-container :global(img) { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; }
-    .placeholder-card { border: 1px dashed #222; border-radius: 15px; display: flex; align-items: center; justify-content: center; aspect-ratio: 3 / 4; background: rgba(255,255,255,0.01); }
-    .placeholder-card span { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: #1a1a1a; transform: rotate(-90deg); }
+    /* GRID DE 3 COLUMNAS (Para que se vea más grande y centrado) */
+    .grid-container { 
+        display: grid; 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 30px; 
+    }
 
-    /* SPOTIFY BUTTON */
     .cta-container { display: flex; justify-content: center; margin-top: 60px; }
-    .btn-spotify { display: inline-flex; align-items: center; gap: 12px; background-color: #1DB954; color: #000; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; padding: 16px 35px; border-radius: 50px; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 15px rgba(29, 185, 84, 0.2); }
-    .btn-spotify:hover { background-color: #1ed760; transform: scale(1.05); box-shadow: 0 8px 25px rgba(29, 185, 84, 0.4); }
-    .btn-spotify svg { width: 20px; height: 20px; }
+    .btn-spotify { display: inline-flex; align-items: center; gap: 12px; background-color: #1DB954; color: #000; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 13px; padding: 18px 35px; border-radius: 100px; text-decoration: none; transition: 0.3s; }
 
     /* ALIADOS */
-    .aliados-section { padding: 100px 0; background: #000; border-top: 1px solid #111; text-align: center; }
-    .badge { color: #ff0000; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 3px; margin-bottom: 15px; }
-    .aliados-title { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: white; margin-bottom: 50px; }
-    .aliados-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-bottom: 40px; }
-    .aliado-card { background: #050505; border: 1px solid #111; border-radius: 12px; padding: 35px 15px; display: flex; flex-direction: column; align-items: center; gap: 15px; transition: all 0.3s ease; }
-    .aliado-card:hover { border-color: #333; background: #080808; transform: translateY(-5px); }
-    .aliado-icon { font-size: 2rem; opacity: 0.7; }
-    .aliado-name { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; color: #444; letter-spacing: 1px; }
-    .aliados-footer { font-family: 'Inter', sans-serif; color: #333; font-size: 13px; margin-top: 30px; }
-    .aliados-footer a { color: #ff0000; text-decoration: none; font-weight: 700; }
+    .aliados-section { padding: 80px 0; position: relative; text-align: center; border-top: 1px solid #111; }
+    .aliados-title { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: white; margin-top: 15px; margin-bottom: 50px; }
+    .aliados-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; }
+    .aliado-card { background: #050505; border: 1px solid #111; border-radius: 8px; padding: 30px 10px; filter: grayscale(1); transition: 0.3s; }
+    .aliado-card:hover { filter: grayscale(0); border-color: #333; background: #080808; }
+    .aliado-name { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; color: #444; text-transform: uppercase; }
 
-    /* RESPONSIVE */
-    @media (max-width: 1100px) { .grid-container { grid-template-columns: repeat(2, 1fr); } .aliados-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 600px) { .grid-container { grid-template-columns: 1fr; } .aliados-grid { grid-template-columns: repeat(2, 1fr); } .aliados-title { font-size: 2.5rem; } .section-header { flex-direction: column; align-items: flex-start; gap: 15px; } }
+    @media (max-width: 900px) {
+        .grid-container { grid-template-columns: repeat(2, 1fr); }
+        .aliados-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+        .grid-container { grid-template-columns: 1fr; }
+        .section-title { font-size: 2.5rem; }
+    }
 </style>

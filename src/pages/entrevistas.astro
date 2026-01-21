@@ -1,0 +1,23 @@
+---
+import CategoryLayout from '../layouts/CategoryLayout.astro';
+import NewsCard from '../components/NewsCard.astro';
+---
+
+<CategoryLayout 
+    title="ENTREVISTAS" 
+    subtitle="En palabras de los protagonistas: Conversaciones profundas con los arquitectos del ruido."
+    image="/hero-entrevistas.jpg" 
+    color="#ff0000"
+>
+    <div class="cat-grid">
+        <NewsCard 
+            title="En la mente de León Larregui: 15 años después de MTV Unplugged"
+            summary="Hablamos en exclusiva sobre el proceso creativo que cambió el rumbo de Zoé."
+            date="16 ENE 2026"
+            category="EXCLUSIVA"
+            region="MÉXICO"
+            image="/entrevista-zoe.jpg"
+            url="/nota-entrevista-zoe"
+        />
+    </div>
+</CategoryLayout>

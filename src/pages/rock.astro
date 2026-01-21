@@ -4,27 +4,19 @@ import NewsCard from '../components/NewsCard.astro';
 ---
 
 <CategoryLayout 
-    title="ROCK"
-    subtitle="Crónicas, leyendas y el pulso de la distorsión global."
-    image="https://images.unsplash.com/photo-1459749411177-042180ce673c"
+    title="ROCK" 
+    subtitle="Crónicas, leyendas y el pulso de la distorsión que mueve al mundo."
+    image="/hero-rock.jpg" 
     color="#ff0000"
 >
-    <!-- Aquí metes las tarjetas que pertenecen a esta sección -->
     <NewsCard 
-        title="A 15 años de Música de Fondo, Zoé consolida su legado"
-        summary="Un repaso por la sesión que cambió el rock mexicano."
-        date="16 ENE 2026"
-        category="ESPECIAL"
-        image="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800"
-        url="/nota-zoe"
-    />
-
-    <NewsCard 
-        title="KISS ALIVE!: El disco que cambió las reglas"
-        summary="Cómo un álbum en vivo rescató a una banda de la quiebra."
+        title="KISS ALIVE!: El disco que cambió las reglas del directo"
+        summary="Un repaso por la sesión que rescató a la banda de la quiebra en 1975."
         date="15 ENE 2026"
-        category="CLÁSICOS"
-        image="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=800"
+        category="ESPECIAL"
+        region="INTERNACIONAL"
+        image="/ALIVE-ALBUM-COVER-ALTERNATE.jpg"
         url="/nota-kiss"
     />
+    <!-- Añadir más NewsCards aquí -->
 </CategoryLayout>

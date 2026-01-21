@@ -1,0 +1,23 @@
+---
+import CategoryLayout from '../layouts/CategoryLayout.astro';
+import NewsCard from '../components/NewsCard.astro';
+---
+
+<CategoryLayout 
+    title="CULTURA" 
+    subtitle="Más allá de los amplificadores: Arte, literatura y los movimientos que definen el presente."
+    image="/hero-cultura.jpg" 
+    color="#ff0000"
+>
+    <div class="cat-grid">
+        <NewsCard 
+            title="Street Art: La rebelión visual en las calles de la CDMX"
+            summary="Un recorrido por los murales que están transformando la estética urbana este año."
+            date="17 ENE 2026"
+            category="ARTE"
+            region="NACIONAL"
+            image="/street-art.jpg"
+            url="/nota-cultura"
+        />
+    </div>
+</CategoryLayout>

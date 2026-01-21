@@ -2,126 +2,199 @@
 import RockLayout from './RockLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Player from '../components/Player.astro';
+import NewsCard from '../components/NewsCard.astro'; 
 
-// Definimos lo que recibe el componente
-interface Props {
-  title: string;
-  category: string;
-  readTime: string;
-  date: string;
-  author: string;
-  image: string;
-  summary: string;
-  tempo: string;
-  mood: string;
-  sello: string;
-  videoId?: string;
-  tags?: string[];
-}
-
-const { 
-    title, 
-    category, 
-    readTime, 
-    date, 
-    author, 
-    image, 
-    summary, 
-    tempo, 
-    mood, 
-    sello, 
-    videoId, 
-    tags = [] 
-} = Astro.props;
+const { title, image, category, date, author, videoId, region } = Astro.props;
 ---
 
 <RockLayout title={`${title} | El Rock de Todos los Días`}>
     <Header />
 
-    <article class="modern-post">
-        <!-- HERO PRINCIPAL -->
-        <header class="post-hero" style={`background-image: linear-gradient(rgba(0,0,0,0.4), #000), url(${image});`}>
-            <div class="hero-content">
-                <span class="category-pill">{category}</span>
-                <h1>{title}</h1>
-                <p class="read-time">{readTime} // {date} // POR {author}</p>
+    <main class="post-page">
+        <!-- 1. HERO -->
+        <header class="post-hero">
+            <div class="container">
+                <div class="post-meta-top">
+                    <span class="post-category">{category}</span>
+                    <span class="post-date">{date}</span>
+                </div>
+                <h1 class="post-title">{title}</h1>
+                <div class="post-author-row">
+                    <span class="author-label">POR</span>
+                    <span class="author-name">{author || 'REDACCIÓN'}</span>
+                </div>
             </div>
+            <div class="hero-bg" style={`background-image: linear-gradient(to top, #000, rgba(0,0,0,0.3)), url(${image});`}></div>
         </header>
 
+        <!-- 2. CONTENEDOR PRINCIPAL -->
         <div class="post-container">
-            <main class="main-content">
-                <div class="lead-text">
-                    <p>{summary}</p>
-                </div>
-
-                <div class="article-body">
-                    <slot /> <!-- Aquí entra el texto de la nota -->
-                    
-                    <!-- SECCIÓN DE TAGS -->
-                    <div class="post-tags">
-                        {tags.map((tag: string) => (
-                            <a href={`/genero/${tag.toLowerCase()}`}>#{tag.toUpperCase()}</a>
-                        ))}
-                    </div>
-                </div>
-
+            <article class="post-content">
                 {videoId && (
                     <div class="video-wrapper">
                         <iframe 
-                            width="100%" 
-                            height="500" 
                             src={`https://www.youtube.com/embed/${videoId}`} 
+                            title="YouTube video player" 
                             frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
                         </iframe>
                     </div>
                 )}
-            </main>
 
-            <aside class="sidebar">
-                <div class="pulse-card">
-                    <h3>DETALLES DEL PULSO</h3>
-                    <div class="pulse-info">
-                        <p>TEMPO: <strong>{tempo}</strong></p>
-                        <p>MOOD: <strong>{mood}</strong></p>
-                        <p>SELLO: <strong>{sello}</strong></p>
+                <div class="article-body">
+                    <slot /> 
+                </div>
+
+                <div class="share-section">
+                    <span class="share-title">COMPARTE EL RUIDO:</span>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn fb"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="share-btn tw"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="share-btn wa"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SIDEBAR CON EFECTO STICKY -->
+            <aside class="post-sidebar">
+                <div class="sidebar-sticky-wrapper">
+                    <div class="sidebar-block">
+                        <div class="sidebar-header">
+                            <div class="red-bar-s"></div>
+                            <h3 class="sidebar-title">PLAYLIST <span class="red-italic">DE LA SEMANA</span></h3>
+                        </div>
+                        <div class="spotify-container">
+                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXat9Yp9v999H?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
                     </div>
 
-                    <div class="rating-circle">
-                        <svg viewBox="0 0 36 36" class="circular-chart">
-                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <path class="circle" stroke-dasharray="92, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <text x="18" y="20.35" class="percentage">9.2</text>
-                        </svg>
-                        <span>PULSO EDITORIAL</span>
+                    <div class="sidebar-block">
+                        <h3 class="sidebar-title-simple">SÍGUENOS</h3>
+                        <div class="social-grid-sidebar">
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
                     </div>
                 </div>
             </aside>
         </div>
-    </article>
+
+        <!-- 3. RELACIONADOS -->
+        <section class="related-section">
+            <div class="related-compact-wrapper">
+                <div class="section-header-centered">
+                    <div class="red-bar-horizontal"></div>
+                    <h2 class="section-title-mini">NOTICIAS <span class="red-italic">RELACIONADAS</span></h2>
+                </div>
+                
+                <div class="related-grid-compact">
+                    <NewsCard 
+                        title="Zoé: 15 años de la sesión que redefinió el rock"
+                        summary="Música de Fondo permanece como testimonio único."
+                        date="16 ENE 2026"
+                        category="ESPECIAL"
+                        region="NACIONAL"
+                        image="/zoe-mtv-unplugged.jpg"
+                        url="/nota-zoe"
+                    />
+                    <NewsCard 
+                        title="Dragon Ball Daima: La última pieza de Akira Toriyama"
+                        summary="Daima se siente como una despedida."
+                        date="18 ENE 2026"
+                        category="ANIME"
+                        region="INTERNACIONAL"
+                        image="/image-7-1086x1536.png"
+                        url="/nota-dragon-ball-daima"
+                    />
+                    <NewsCard 
+                        title="Joker 2: La decadencia de Arthur Fleck"
+                        summary="Un análisis profundo sobre la secuela de Todd Phillips."
+                        date="18 ENE 2026"
+                        category="PANTALLAS"
+                        region="INTERNACIONAL"
+                        image="/jokerh.jpg"
+                        url="/nota-joker-2"
+                    />
+                </div>
+            </div>
+        </section>
+    </main>
 
     <Footer />
-    <Player />
 </RockLayout>
 
 <style>
-    .modern-post { background: #000; color: white; }
-    .post-hero { height: 80vh; background-size: cover; background-position: center; display: flex; align-items: flex-end; padding-bottom: 60px; }
-    .hero-content { max-width: 1400px; margin: 0 auto; width: 90%; }
-    h1 { font-family: 'Bebas Neue'; font-size: 7rem; line-height: 0.8; margin: 20px 0; letter-spacing: -2px; }
-    .category-pill { background: var(--accent); padding: 5px 15px; font-family: 'Bebas Neue'; font-size: 1.2rem; }
-    .read-time { font-family: 'Inter'; font-weight: 800; font-size: 0.8rem; color: #888; }
+    .post-page { background: #000; padding-top: 155px; }
+    .container { width: 90%; max-width: 1400px; margin: 0 auto; }
 
-    .post-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 300px; gap: 60px; padding: 60px 5%; }
-    .lead-text { font-size: 1.5rem; font-style: italic; color: #888; margin-bottom: 40px; border-left: 4px solid var(--accent); padding-left: 20px; }
-    .article-body :global(p) { font-family: 'Inter'; font-size: 1.25rem; line-height: 1.8; color: #ccc; margin-bottom: 25px; }
+    /* HERO */
+    .post-hero { height: 70vh; position: relative; display: flex; align-items: flex-end; padding-bottom: 80px; overflow: hidden; }
+    .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 1; }
+    .post-hero .container { position: relative; z-index: 2; }
+    
+    .post-meta-top { display: flex; gap: 20px; margin-bottom: 20px; align-items: center; }
+    .post-category { background: #ff0000; color: #fff; font-size: 11px; font-weight: 900; padding: 5px 12px; letter-spacing: 1px; }
+    .post-date { color: #ccc; font-size: 11px; font-weight: 700; }
 
-    .post-tags { margin-top: 50px; display: flex; flex-wrap: wrap; gap: 15px; border-top: 1px solid #111; padding-top: 30px; }
-    .post-tags a { font-family: 'Bebas Neue'; font-size: 1.2rem; color: #444; text-decoration: none; transition: 0.3s; }
-    .post-tags a:hover { color: var(--accent); transform: translateY(-2px); }
+    .post-title { font-family: 'Bebas Neue'; font-size: clamp(3rem, 8vw, 7rem); color: #fff; line-height: 0.9; margin-bottom: 30px; font-style: italic; text-transform: uppercase; }
 
-    .pulse-card { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 30px; position: sticky; top: 120px; }
-    .pulse-card h3 { font-family: 'Bebas Neue'; color: var(--accent); font-size: 1.2rem; margin-bottom: 20px; }
-    .pulse-info p { font-family: 'Inter'; font-size: 0.8rem; color: #555; margin-bottom: 10px; border-bottom: 1px solid #111; padding-bottom: 10px; font-weight: 800; }
-    .pulse-info s
+    /* LAYOUT CUERPO */
+    .post-container { 
+        max-width: 1400px; 
+        margin: 0 auto; 
+        display: grid; 
+        grid-template-columns: 1fr 350px; 
+        gap: 60px; 
+        padding: 80px 5%; 
+        position: relative; /* Importante para el sticky */
+    }
+
+    /* ESTILO STICKY PARA EL SIDEBAR */
+    .sidebar-sticky-wrapper {
+        position: sticky;
+        top: 175px; /* Altura del header + un margen de respiro */
+        align-self: start; /* Evita que el div se estire hasta el fondo del grid */
+    }
+
+    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 40px; background: #050505; }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    
+    .article-body { color: #ccc; font-size: 1.15rem; line-height: 1.8; font-family: 'Inter', sans-serif; }
+    .article-body :global(p) { margin-bottom: 25px; }
+    .article-body :global(h2) { font-family: 'Bebas Neue'; font-size: 2.5rem; color: #fff; margin: 40px 0 20px; }
+
+    /* COMPARTIR */
+    .share-section { margin-top: 60px; padding-top: 30px; border-top: 1px solid #111; display: flex; align-items: center; gap: 20px; }
+    .share-buttons { display: flex; gap: 10px; }
+    .share-btn { width: 40px; height: 40px; border: 1px solid #222; display: flex; align-items: center; justify-content: center; color: #fff; transition: 0.3s; text-decoration: none; }
+    .share-btn:hover { background: #ff0000; border-color: #ff0000; }
+
+    /* SIDEBAR BLOCKS */
+    .sidebar-block { margin-bottom: 50px; }
+    .sidebar-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+    .red-bar-s { width: 4px; height: 25px; background: #ff0000; }
+    .sidebar-title { font-family: 'Bebas Neue'; font-size: 1.8rem; color: #fff; margin: 0; }
+    .red-italic { color: #ff0000; font-style: italic; }
+    .social-grid-sidebar { display: flex; gap: 20px; font-size: 1.2rem; }
+    .social-grid-sidebar a { color: #333; transition: 0.3s; }
+    .social-grid-sidebar a:hover { color: #fff; }
+
+    /* RELACIONADOS */
+    .related-section { padding: 100px 0; border-top: 1px solid #111; background: #050505; }
+    .related-compact-wrapper { max-width: 1050px; margin: 0 auto; padding: 0 5%; }
+    .section-header-centered { text-align: center; margin-bottom: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+    .red-bar-horizontal { width: 40px; height: 4px; background: #ff0000; }
+    .section-title-mini { font-family: 'Bebas Neue'; font-size: 3rem; color: #fff; margin: 0; letter-spacing: 1px; }
+
+    .related-grid-compact { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .related-grid-compact :global(.card-title) { font-size: 1.4rem !important; margin-top: 10px; }
+    .related-grid-compact :global(.card-summary) { display: none; }
+
+    @media (max-width: 1100px) {
+        .post-container { grid-template-columns: 1fr; }
+        .post-sidebar { display: none; }
+        .related-grid-compact { grid-template-columns: repeat(2, 1fr); }
+    }
+</style>

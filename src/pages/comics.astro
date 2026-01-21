@@ -1,0 +1,24 @@
+---
+import CategoryLayout from '../layouts/CategoryLayout.astro';
+import NewsCard from '../components/NewsCard.astro';
+---
+
+<CategoryLayout 
+    title="CÓMICS" 
+    subtitle="Narrativa gráfica, novela visual y el arte de contar historias entre paneles."
+    image="/hero-comics.jpg" 
+    color="#ff0000"
+>
+    <div class="cat-grid">
+        <NewsCard 
+            title="Batman: El regreso del caballero oscuro en una edición de lujo"
+            summary="Analizamos la nueva entrega que redefine el mito de Gotham para 2026."
+            date="19 ENE 2026"
+            category="RESEÑA"
+            region="EDITORIAL"
+            image="/portada-comics.jpg"
+            url="/nota-comics"
+        />
+        <!-- Añadir más NewsCards aquí -->
+    </div>
+</CategoryLayout>

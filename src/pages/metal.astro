@@ -1,61 +1,13 @@
 ---
-import RockLayout from '../layouts/RockLayout.astro';
-import Header from '../components/Header.astro';
+import CategoryLayout from '../layouts/CategoryLayout.astro';
 import NewsCard from '../components/NewsCard.astro';
-import Footer from '../components/Footer.astro';
-import Player from '../components/Player.astro';
 ---
 
-<RockLayout title="Metal & Hardcore | El Rock de Todos los Días">
-    <Header />
-
-    <main style="padding-top: 104px;">
-        <section class="section-hero">
-            <div class="container">
-                <span class="breadcrumb">SECCIONES // RUIDO</span>
-                <h1>METAL <span class="outline">& HARDCORE</span></h1>
-                <p>La potencia máxima del rock: desde los clásicos de Bob Rock hasta los estrenos más pesados.</p>
-            </div>
-        </section>
-
-        <section class="grid-section">
-            <div class="container">
-                <div class="grid">
-                    <!-- NOTA DE THE OFFSPRING -->
-                    <NewsCard 
-                        title="The Offspring lanza SUPERCHARGED: El regreso triunfal"
-                        summary="Dexter Holland y Noodles reclutan a Bob Rock para una entrega cargada de punk, metal y el espíritu brasileño."
-                        date="16 ENE 2026"
-                        category="ESTRENO"
-                        image="https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?q=80&w=800"
-                        url="/nota-offspring"
-                    />
-
-                    <NewsCard 
-                        title="Ghost redefine el Metal Melódico con 'Rite Here Rite Now'"
-                        summary="Analizamos cómo Papa Emeritus IV ha conquistado el mainstream sin perder su esencia oscura."
-                        date="14 ENE 2026"
-                        category="METAL"
-                        image="https://i.scdn.co/image/ab67616d0000b273934384197025828a2a07"
-                        url="#"
-                    />
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <Footer />
-    <Player />
-</RockLayout>
-
-<style>
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
-    .section-hero { padding: 100px 0; background: #000; border-bottom: 2px solid #111; }
-    .breadcrumb { color: var(--accent); font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 2px; }
-    h1 { font-size: 8rem; line-height: 0.8; margin: 20px 0; }
-    .outline { color: transparent; -webkit-text-stroke: 1.5px white; }
-    .grid-section { padding: 80px 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; }
-
-    @media (max-width: 768px) { h1 { font-size: 4rem; } }
-</style>
+<CategoryLayout 
+    title="METAL" 
+    subtitle="Poder, técnica y la oscuridad hecha sonido: El universo del riff pesado."
+    image="/hero-metal.jpg" 
+    color="#ff0000" 
+>
+    <!-- Tus NewsCards de Metal aquí -->
+</CategoryLayout>

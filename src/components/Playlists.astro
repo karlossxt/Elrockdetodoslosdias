@@ -1,76 +1,161 @@
-<section class="playlists-cta">
-    <div class="cta-container">
-        <div class="cta-content">
-            <span class="cta-tag">CURADURÍA SONORA</span>
-            <h2>EL RUIDO NO SE DETIENE: <br/> <span class="outline">ESCUCHA NUESTRAS PLAYLISTS</span></h2>
-            <p>Selecciones exclusivas diseñadas por nuestro equipo editorial para acompañar cada estado de ánimo.</p>
-            <a href="/playlists" class="btn-playlist-go">
-                EXPLORAR CATÁLOGO <i class="fa-brands fa-spotify"></i>
-            </a>
+---
+const estrenos = [
+    { title: 'SONGS OF A LOST WORLD', artist: 'THE CURE', image: '/cure.jpg' },
+    { title: 'FROM ZERO', artist: 'LINKIN PARK', image: '' }, 
+    { title: 'ROMANCE', artist: 'FONTAINES D.C.', image: '' },
+    { title: 'INÉS', artist: 'RUBÉN ALBARRÁN', image: '' },
+    { title: 'RITE HERE RITE NOW', artist: 'GHOST', image: '' },
+];
+---
+
+<section class="seccion-estrenos-principal">
+    <div class="container-compact">
+        
+        <!-- CABECERA HOMOLOGADA -->
+        <div class="cabecera-unificada">
+            <div class="lado-izquierdo">
+                <div class="barra-roja-editorial"></div>
+                <h2 class="titulo-seccion-estandar">ESTRENOS <span class="itinerario-rojo">DE LA SEMANA</span></h2>
+            </div>
+            <div class="etiqueta-spotify">
+                <span class="punto-verde"></span> TOP 5 SEMANAL
+            </div>
         </div>
+
+        <!-- EL CONTENEDOR DE LA CUADRÍCULA -->
+        <div class="cuadricula-estrenos">
+            {estrenos.map((item) => (
+                <article class="tarjeta-estreno">
+                    <div class="contenedor-imagen">
+                        {item.image ? (
+                            <img src={item.image} alt={item.title} />
+                        ) : (
+                            <div class="relleno-vacio">
+                                <span>{item.artist[0]}</span>
+                            </div>
+                        )}
+                        <div class="capa-hover">
+                            <i class="fa-brands fa-spotify"></i>
+                        </div>
+                    </div>
+                    <div class="contenedor-texto">
+                        <h4 class="nombre-disco">{item.title}</h4>
+                        <p class="nombre-artista">{item.artist}</p>
+                    </div>
+                </article>
+            ))}
+        </div>
+        
     </div>
 </section>
 
 <style>
-    .playlists-cta {
+    /* 1. CONTENEDOR PARA ALINEAR CON EL RESTO DE LA WEB */
+    .container-compact {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .seccion-estrenos-principal {
+        padding: 0 0 80px 0; /* Espaciado inferior */
         background: #000;
-        padding: 100px 5%;
-        border-top: 1px solid #111;
-        overflow: hidden;
-        position: relative;
+        width: 100%;
     }
 
-    /* Fondo decorativo con movimiento sutil */
-    .playlists-cta::before {
-        content: "";
-        position: absolute;
-        top: 0; right: 0; width: 40%; height: 100%;
-        background: linear-gradient(to left, #ff000022, transparent);
-        pointer-events: none;
+    /* 2. CABECERA (IGUAL A HISTORIAS) */
+    .cabecera-unificada {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 45px;
+        border-bottom: 1px solid #111;
+        padding-bottom: 20px;
     }
 
-    .cta-container { max-width: 1400px; margin: 0 auto; }
-    .cta-tag { font-family: 'Inter'; font-weight: 900; font-size: 0.7rem; color: var(--accent); letter-spacing: 4px; }
+    .lado-izquierdo { display: flex; align-items: center; gap: 20px; }
     
-    h2 { 
-        font-family: 'Bebas Neue'; 
-        font-size: 6rem; 
-        line-height: 0.85; 
-        margin: 20px 0; 
+    .barra-roja-editorial { 
+        width: 6px; 
+        height: 55px; /* Altura idéntica a Historias */
+        background: #ff0000; 
+    }
+
+    .titulo-seccion-estandar {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4.5rem; /* Tamaño idéntico a Historias */
+        line-height: 0.85;
         color: white;
-    }
-    .outline { color: transparent; -webkit-text-stroke: 1.5px white; }
-
-    p { 
-        font-family: 'Inter'; 
-        color: #666; 
-        font-size: 1.2rem; 
-        max-width: 550px; 
-        margin-bottom: 40px; 
-        font-weight: 500;
+        margin: 0;
+        letter-spacing: -1px;
     }
 
-    .btn-playlist-go {
+    .itinerario-rojo { color: #ff0000; font-style: italic; }
+
+    .etiqueta-spotify {
         display: inline-flex;
         align-items: center;
-        gap: 15px;
-        background: #1DB954; /* Verde Spotify */
-        color: black;
-        padding: 20px 40px;
-        text-decoration: none;
-        font-family: 'Bebas Neue';
-        font-size: 1.8rem;
+        gap: 8px;
+        color: #1DB954;
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+    .punto-verde { width: 6px; height: 6px; background: #1DB954; border-radius: 50%; }
+
+    /* 3. ESTA ES LA REGLA QUE PONE LOS DISCOS EN HORIZONTAL */
+    .cuadricula-estrenos {
+        display: grid !important; /* Forzamos el grid */
+        grid-template-columns: repeat(5, 1fr) !important; /* 5 columnas una al lado de otra */
+        gap: 20px;
+        width: 100%;
+    }
+
+    /* 4. DISEÑO DE LAS TARJETAS */
+    .contenedor-imagen {
+        position: relative;
+        aspect-ratio: 1 / 1;
         border-radius: 4px;
-        transition: 0.3s;
+        overflow: hidden;
+        margin-bottom: 15px;
+        background: #111;
     }
 
-    .btn-playlist-go:hover {
-        background: white;
-        transform: translateY(-5px) scale(1.05);
+    .contenedor-imagen img { width: 100%; height: 100%; object-fit: cover; }
+
+    .relleno-vacio {
+        width: 100%; height: 100%;
+        background: linear-gradient(135deg, #080808 0%, #151515 100%);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .relleno-vacio span { font-family: 'Bebas Neue'; font-size: 4rem; color: #1a1a1a; }
+
+    .nombre-disco {
+        font-family: 'Bebas Neue', sans-serif;
+        color: #fff;
+        font-size: 1.1rem;
+        margin: 0 0 5px 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    @media (max-width: 768px) {
-        h2 { font-size: 3rem; }
-        .btn-playlist-go { font-size: 1.3rem; padding: 15px 30px; }
+    .nombre-artista {
+        font-family: 'Inter', sans-serif;
+        color: #555;
+        font-size: 9px;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 1100px) {
+        .cuadricula-estrenos { grid-template-columns: repeat(3, 1fr) !important; }
+    }
+    @media (max-width: 600px) {
+        .cuadricula-estrenos { grid-template-columns: repeat(2, 1fr) !important; }
+        .titulo-seccion-estandar { font-size: 3rem; }
     }
 </style>

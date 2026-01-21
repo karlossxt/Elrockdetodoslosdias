@@ -1,48 +1,155 @@
 ---
-const RELEASES = [
-  { artist: 'The Cure', album: 'Songs of a Lost World', type: 'Álbum', img: 'sogs.jpg', url: 'https://open.spotify.com/intl-es/album/0jYmAPQezr1aG75KerJCdG?si=APmcgfsIQUO1RehRkYbGyA' },
-  { artist: 'Linkin Park', album: 'From Zero', type: 'Álbum', img: 'https://i.scdn.co/image/ab67616d0000b2730687799014197025828a2a07', url: 'https://open.spotify.com/album/4vI0pLp9N85255462524' },
-  { artist: 'Fontaines D.C.', album: 'Romance', type: 'Álbum', img: 'https://i.scdn.co/image/ab67616d0000b273e8e2e987799014197025828a', url: '#' },
-  { artist: 'Caifanes', album: 'Inés', type: 'Sencillo', img: 'https://i.scdn.co/image/ab67616d0000b27341577742194197025828a2a0', url: '#' },
-  { artist: 'Ghost', album: 'Rite Here Rite Now', type: 'Banda Sonora', img: 'https://i.scdn.co/image/ab67616d0000b273934384197025828a2a07', url: '#' }
+const estrenos = [
+    { title: 'SONGS OF A LOST WORLD', artist: 'THE CURE', image: '/cure.jpg' },
+    { title: 'FROM ZERO', artist: 'LINKIN PARK', image: '' },
+    { title: 'ROMANCE', artist: 'FONTAINES D.C.', image: '' },
+    { title: 'INÉS', artist: 'RUBÉN ALBARRÁN', image: '' },
+    { title: 'RITE HERE RITE NOW', artist: 'GHOST', image: '' },
 ];
 ---
-<section class="spotify-section">
-    <div class="header-spotify">
-        <div class="live-tag"><span class="pulse"></span> TOP 5 SEMANAL</div>
-        <h2>ESTRENOS QUE <span class="red-text">QUEMAN</span></h2>
-    </div>
 
-    <div class="releases-grid">
-        {RELEASES.map(item => (
-            <a href={item.url} target="_blank" class="release-card">
-                <div class="img-box">
-                    <img src={item.img} alt={item.album} />
-                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+<section class="estrenos-section">
+    <!-- AÑADIMOS EL CONTENEDOR COMPACTO AQUÍ -->
+    <div class="container-compact">
+        
+        <div class="estrenos-header">
+            <div class="top-badge">
+                <span class="dot"></span> TOP 5 SEMANAL
+            </div>
+            <h2 class="main-title">ESTRENOS <span class="red-italic">DE LA SEMANA</span></h2>
+        </div>
+
+        <div class="estrenos-grid">
+            {estrenos.map((item) => (
+                <div class="estreno-card">
+                    <div class="img-container">
+                        {item.image ? (
+                            <img src={item.image} alt={item.title} />
+                        ) : (
+                            <div class="img-placeholder">
+                                <span>{item.artist[0]}</span>
+                            </div>
+                        )}
+                        <div class="hover-overlay">
+                            <i class="fa-brands fa-spotify"></i>
+                        </div>
+                    </div>
+                    <div class="txt-container">
+                        <h4 class="release-name">{item.title}</h4>
+                        <p class="release-artist">{item.artist}</p>
+                    </div>
                 </div>
-                <h3>{item.album}</h3>
-                <p>{item.artist}</p>
-            </a>
-        ))}
+            ))}
+        </div>
+        
     </div>
 </section>
 
 <style>
-    .spotify-section { padding: 60px 5%; }
-    h2 { font-size: 5rem; margin-bottom: 40px; line-height: 0.9; }
-    .red-text { color: var(--accent); }
-    .pulse { width: 8px; height: 8px; background: #1DB954; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
-    .live-tag { color: #1DB954; font-weight: 800; font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; }
-    .releases-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
-    .release-card { text-decoration: none; }
-    .img-box { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 4px; margin-bottom: 15px; background: #111; }
-    .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(100%); }
-    .release-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
-    .play-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
-    .release-card:hover .play-overlay { opacity: 1; }
-    .play-overlay i { background: #1DB954; color: black; padding: 15px; border-radius: 50%; }
-    h3 { font-size: 1.5rem; color: white; margin: 0; line-height: 1; }
-    p { font-size: 0.9rem; color: #888; margin-top: 5px; font-weight: 600; }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-    @media (max-width: 900px) { .releases-grid { grid-template-columns: repeat(2, 1fr); } h2 { font-size: 3rem; } }
+    /* 1. LIMITAMOS EL ANCHO DEL COMPONENTE */
+    .container-compact {
+        max-width: 1100px; /* EL MISMO ANCHO QUE TUS HISTORIAS */
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .estrenos-section {
+        padding: 0 0 60px 0; /* Quitamos padding superior para que se pegue arriba */
+        background: #000;
+        width: 100%;
+    }
+
+    /* 2. AJUSTE DE CABECERA */
+    .estrenos-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .top-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #1DB954;
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .dot { width: 6px; height: 6px; background: #1DB954; border-radius: 50%; }
+
+    .main-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4rem; /* Aumentamos un poco para impacto */
+        color: white;
+        line-height: 0.8;
+        margin: 0;
+        letter-spacing: -2px;
+    }
+
+    .red-italic { color: #ff0000; font-style: italic; }
+
+    /* 3. GRID ALINEADO */
+    .estrenos-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+    }
+
+    .img-container {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 15px;
+        background: #111;
+        border: 1px solid #1a1a1a;
+    }
+
+    .img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+    .img-placeholder {
+        width: 100%; height: 100%;
+        background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .img-placeholder span { font-family: 'Bebas Neue'; font-size: 4rem; color: #222; }
+
+    .hover-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(29, 185, 84, 0.4);
+        display: flex; align-items: center; justify-content: center;
+        opacity: 0; transition: 0.3s;
+    }
+    .img-container:hover .hover-overlay { opacity: 1; }
+
+    .release-name {
+        font-family: 'Bebas Neue', sans-serif;
+        color: #fff;
+        font-size: 1.1rem;
+        margin: 0 0 5px 0;
+        line-height: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .release-artist {
+        font-family: 'Inter', sans-serif;
+        color: #666;
+        font-size: 9px;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 1100px) {
+        .estrenos-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+        .estrenos-grid { grid-template-columns: repeat(2, 1fr); }
+        .main-title { font-size: 3.5rem; }
+    }
 </style>

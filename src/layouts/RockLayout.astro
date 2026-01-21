@@ -14,28 +14,78 @@ const { title } = Astro.props;
     <slot /> 
     
     <style is:global>
-        :root {
-            --bg: #000000;
-            --accent: #ff0000;
-        }
+    :root {
+        --bg: #000000;
+        --accent: #ff0000; /* El rojo rockero */
+        --gray-text: #666666;
+    }
 
-        /* RESET BÁSICO */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Dentro de <style is:global> en RockLayout.astro */
+/* ANIMACIÓN DE REVELADO */
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+    }
 
-        body {
-            background-color: #000;
-            color: white;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-        /* ESTO ES LO QUE ESTABA ROMPIENDO TODO: */
-        /* Eliminamos cualquier regla de img { width: 100% } global */
-        
-        a { text-decoration: none; color: inherit; }
+    /* Retrasos para grids (opcional) */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+h1, h2, h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+}
 
-        /* Solo las imágenes de las notas deben ser grandes */
-        .article-body img { width: 100%; height: auto; margin: 20px 0; }
-    </style>
+.section-title {
+    font-size: 5rem;
+    line-height: 0.85;
+    letter-spacing: -1px;
+}
+
+.red-italic {
+    color: #ff0000;
+    font-style: italic;
+}
+
+/* Tipografía de cuerpo */
+p, span, a, div {
+    font-family: 'Inter', sans-serif;
+}
+
+    /* La barrita roja vertical que ves en tus imágenes */
+    .red-bar-vertical {
+        width: 6px;
+        height: 60px;
+        background: var(--accent);
+        flex-shrink: 0;
+    }
+
+    /* Los badges grises de las fotos */
+    .gray-badge {
+        background: rgba(255, 255, 255, 0.05);
+        color: #888;
+        padding: 5px 12px;
+        font-size: 10px;
+        font-weight: 800;
+        border-radius: 4px;
+        text-transform: uppercase;
+    }
+
+    /* Grid estándar para que todo alinee igual */
+    .main-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    @media (max-width: 1100px) { .main-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .main-grid { grid-template-columns: 1fr; } }
+</style>
 </body>
 </html>
