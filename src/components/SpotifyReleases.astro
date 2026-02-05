@@ -1,155 +1,251 @@
 ---
-const estrenos = [
-    { title: 'SONGS OF A LOST WORLD', artist: 'THE CURE', image: '/cure.jpg' },
-    { title: 'FROM ZERO', artist: 'LINKIN PARK', image: '' },
-    { title: 'ROMANCE', artist: 'FONTAINES D.C.', image: '' },
-    { title: 'INÉS', artist: 'RUBÉN ALBARRÁN', image: '' },
-    { title: 'RITE HERE RITE NOW', artist: 'GHOST', image: '' },
+const categories = [
+    {
+        name: 'HEAVY ROTATION',
+        label: 'ROCK',
+        items: [
+            { title: '72 SEASONS', artist: 'METALLICA', image: '/metallica.jpg' },
+            { title: 'DARK MATTER', artist: 'PEARL JAM', image: '/pearljam.jpg' },
+        ]
+    },
+    {
+        name: 'BOX OFFICE',
+        label: 'CINEMA',
+        items: [
+            { title: 'GLADIATOR II', artist: 'RIDLEY SCOTT', image: '/gladiator.jpg' },
+            { title: 'DUNE: PROPHECY', artist: 'HBO', image: '/dune.jpg' },
+        ]
+    },
+    {
+        name: 'SYSTEM UPDATE',
+        label: 'GAMES',
+        items: [
+            { title: 'DRAGON AGE: VEILGUARD', artist: 'BIOWARE', image: '/dragonage.jpg' },
+            { title: 'S.T.A.L.K.E.R. 2', artist: 'GSC GAME WORLD', image: '/stalker2.jpg' },
+        ]
+    }
 ];
 ---
 
-<section class="estrenos-section">
-    <!-- AÑADIMOS EL CONTENEDOR COMPACTO AQUÍ -->
+<section class="releases-section">
     <div class="container-compact">
         
-        <div class="estrenos-header">
-            <div class="top-badge">
-                <span class="dot"></span> TOP 5 SEMANAL
+        <!-- BARRA ROJA CON TEXTO ROTADO -->
+        <div class="releases-header">
+            <div class="red-bar-vertical">
+                <div class="rotated-text">OUT NOW WEEKLY</div>
             </div>
-            <h2 class="main-title">ESTRENOS <span class="red-italic">DE LA SEMANA</span></h2>
-        </div>
-
-        <div class="estrenos-grid">
-            {estrenos.map((item) => (
-                <div class="estreno-card">
-                    <div class="img-container">
-                        {item.image ? (
-                            <img src={item.image} alt={item.title} />
-                        ) : (
-                            <div class="img-placeholder">
-                                <span>{item.artist[0]}</span>
-                            </div>
-                        )}
-                        <div class="hover-overlay">
-                            <i class="fa-brands fa-spotify"></i>
+            
+            <!-- 3 COLUMNAS DE CATEGORÍAS -->
+            <div class="releases-grid">
+                {categories.map((cat) => (
+                    <div class="category-column">
+                        <h3 class="category-title">{cat.name}</h3>
+                        <div class="category-label">/ {cat.label}</div>
+                        
+                        <div class="items-list">
+                            {cat.items.map((item) => (
+                                <div class="release-item">
+                                    <div class="item-image">
+                                        {item.image ? (
+                                            <img src={item.image} alt={item.title} />
+                                        ) : (
+                                            <div class="placeholder">{item.artist[0]}</div>
+                                        )}
+                                    </div>
+                                    <div class="item-content">
+                                        <h4 class="item-title">{item.title}</h4>
+                                        <p class="item-artist">{item.artist}</p>
+                                        <div class="spotify-badge">
+                                            <i class="fa-brands fa-spotify"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                    <div class="txt-container">
-                        <h4 class="release-name">{item.title}</h4>
-                        <p class="release-artist">{item.artist}</p>
-                    </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
         
     </div>
 </section>
 
 <style>
-    /* 1. LIMITAMOS EL ANCHO DEL COMPONENTE */
     .container-compact {
-        max-width: 1100px; /* EL MISMO ANCHO QUE TUS HISTORIAS */
+        max-width: 1100px;
         margin: 0 auto;
         padding: 0 20px;
     }
 
-    .estrenos-section {
-        padding: 0 0 60px 0; /* Quitamos padding superior para que se pegue arriba */
+    .releases-section {
+        padding: 60px 0;
         background: #000;
-        width: 100%;
     }
 
-    /* 2. AJUSTE DE CABECERA */
-    .estrenos-header {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-
-    .top-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: #1DB954;
-        font-family: 'Inter', sans-serif;
-        font-size: 10px;
-        font-weight: 900;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-    }
-
-    .dot { width: 6px; height: 6px; background: #1DB954; border-radius: 50%; }
-
-    .main-title {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 4rem; /* Aumentamos un poco para impacto */
-        color: white;
-        line-height: 0.8;
-        margin: 0;
-        letter-spacing: -2px;
-    }
-
-    .red-italic { color: #ff0000; font-style: italic; }
-
-    /* 3. GRID ALINEADO */
-    .estrenos-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-    }
-
-    .img-container {
+    /* HEADER CON BARRA ROJA */
+    .releases-header {
+        display: flex;
+        gap: 40px;
         position: relative;
-        aspect-ratio: 1 / 1;
-        border-radius: 4px;
-        overflow: hidden;
-        margin-bottom: 15px;
-        background: #111;
-        border: 1px solid #1a1a1a;
     }
 
-    .img-container img { width: 100%; height: 100%; object-fit: cover; }
-
-    .img-placeholder {
-        width: 100%; height: 100%;
-        background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
-        display: flex; align-items: center; justify-content: center;
+    .red-bar-vertical {
+        width: 60px;
+        background: linear-gradient(to right, #ff0033 0%, #ff0033 70%, transparent 100%);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .img-placeholder span { font-family: 'Bebas Neue'; font-size: 4rem; color: #222; }
 
-    .hover-overlay {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(29, 185, 84, 0.4);
-        display: flex; align-items: center; justify-content: center;
-        opacity: 0; transition: 0.3s;
-    }
-    .img-container:hover .hover-overlay { opacity: 1; }
-
-    .release-name {
+    .rotated-text {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
         font-family: 'Bebas Neue', sans-serif;
-        color: #fff;
-        font-size: 1.1rem;
-        margin: 0 0 5px 0;
-        line-height: 1;
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: white;
+        letter-spacing: 2px;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 
-    .release-artist {
-        font-family: 'Inter', sans-serif;
-        color: #666;
-        font-size: 9px;
-        font-weight: 800;
+    /* GRID DE 3 COLUMNAS */
+    .releases-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    /* COLUMNA DE CATEGORÍA */
+    .category-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .category-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2rem;
+        font-weight: 900;
+        color: #fff;
+        margin: 0 0 5px 0;
+        letter-spacing: 1px;
         text-transform: uppercase;
     }
 
-    /* RESPONSIVO */
-    @media (max-width: 1100px) {
-        .estrenos-grid { grid-template-columns: repeat(3, 1fr); }
+    .category-label {
+        color: #ff0033;
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+        text-transform: uppercase;
     }
+
+    /* LISTA DE ITEMS */
+    .items-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .release-item {
+        display: flex;
+        gap: 15px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #111;
+    }
+
+    .release-item:last-child {
+        border-bottom: none;
+    }
+
+    .item-image {
+        width: 90px;
+        height: 90px;
+        flex-shrink: 0;
+        background: #050505;
+        border: 1px solid #1a1a1a;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%);
+    }
+
+    .placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
+        color: #222;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.5rem;
+    }
+
+    .item-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .item-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.1rem;
+        color: #fff;
+        margin: 0 0 3px 0;
+        line-height: 1.2;
+        letter-spacing: 0.5px;
+    }
+
+    .item-artist {
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        color: #666;
+        margin: 0;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .spotify-badge {
+        width: 24px;
+        height: 24px;
+        background: #1DB954;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 12px;
+        margin-top: auto;
+    }
+
+    @media (max-width: 1100px) {
+        .releases-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .red-bar-vertical {
+            display: none;
+        }
+    }
+
     @media (max-width: 600px) {
-        .estrenos-grid { grid-template-columns: repeat(2, 1fr); }
-        .main-title { font-size: 3.5rem; }
+        .releases-section { padding: 40px 0; }
+        .category-title { font-size: 1.5rem; }
+        .release-item { flex-direction: column; }
+        .item-image { width: 100%; height: 100px; }
     }
 </style>

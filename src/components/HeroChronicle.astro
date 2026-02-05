@@ -10,7 +10,8 @@ interface Props {
 const { image, title, category = 'ROCK', author = 'REDACCIÓN', date = '' } = Astro.props;
 ---
 
-<section class="chronicle-hero" style={`background-image: url(${image});`}>
+<section class="chronicle-hero">
+  <div class="hero-bg" style={`background-image: url(${image});`}></div>
   <div class="hero-overlay"></div>
 
   <div class="hero-inner">
@@ -27,8 +28,9 @@ const { image, title, category = 'ROCK', author = 'REDACCIÓN', date = '' } = As
 </section>
 
 <style>
-  .chronicle-hero { position: relative; height: 75vh; overflow: hidden; display: flex; align-items: flex-end; background-position: center; background-size: cover; background-attachment: fixed; filter: grayscale(100%) brightness(0.45); }
-  .chronicle-hero .hero-overlay { position: absolute; inset: 0; }
+  .chronicle-hero { position: relative; height: 75vh; overflow: hidden; display: flex; align-items: flex-end; }
+  .chronicle-hero .hero-bg { position: absolute; inset: 0; background-position: center; background-size: cover; background-attachment: fixed; filter: grayscale(100%) brightness(0.45); z-index: 0; }
+  .chronicle-hero .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%); z-index: 1; }
   .chronicle-hero .hero-inner { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto 5rem; padding: 0 20px; color: white; width: 100%; }
 
   .chronicle-hero .badge { display: inline-block; background: #ff0033; color: #fff; padding: 8px 14px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 1.5rem; }
