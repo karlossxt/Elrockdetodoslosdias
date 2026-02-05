@@ -2,7 +2,7 @@
 // 1. IMPORTACIONES
 import RockLayout from '../layouts/RockLayout.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
+import HeroChronicle from '../components/HeroChronicle.astro';
 import NewsCard from '../components/NewsCard.astro';
 import SpotifyReleases from '../components/SpotifyReleases.astro'; // Este es el que ahora se verá como "Lo mejor de la semana"
 import Footer from '../components/Footer.astro';
@@ -21,13 +21,13 @@ const aliados = [
     <Header />
     
     <main class="main-wrapper">
-        <!-- HERO PRINCIPAL (Este sí puede ocupar más ancho para impactar) -->
-        <Hero 
-            tag="REMEMBRANZAS // 50 AÑOS"
-            title="KISS ALIVE!: a 50 años"
-            subtitle="El álbum que cambió el rumbo de los discos en directo y salvó a una banda de la quiebra en 1975."
+        <!-- HERO PRINCIPAL (Estilo Chronicle) -->
+        <HeroChronicle
             image="/ALIVE-ALBUM-COVER-ALTERNATE.jpg"
-            url="/nota-kiss"
+            title="KISS ALIVE!: a 50 años"
+            category="REMEMBRANZAS"
+            author="REDACCIÓN"
+            date="16 ENE 2026"
         />
 
         
